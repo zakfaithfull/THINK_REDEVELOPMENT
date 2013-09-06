@@ -38,10 +38,11 @@ html, body {
 	/* height: 100%; */
 }
 body {
-	font-family: @serif;
-	font-size: 100%;
+	font-family: "proxima-nova-condensed", sans-serif;
+	font-size: 18px;
 	line-height: 1.5;
-	color: #565656;
+	color: #838383;
+	font-weight: 400;
 }
 
 /********************
@@ -128,9 +129,9 @@ a, a:visited {
 ******************************************************************/
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
-	font-family: @sans-serif;
 	text-rendering: optimizelegibility;
 	font-weight: 400;
+	color: #535353;
 	/*
 	if you're going to use webfonts, be sure to check your weights
 	http://css-tricks.com/watch-your-font-weight/
@@ -145,6 +146,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 h1, .h1 {
 	font-size: 2.5em;
 	line-height: 1.333em;
+}
+
+section h1, section h2, section h3 {
+	font-size: 31px;
+	text-transform: uppercase;
+	font-weight: 400;
+	line-height: 1.2;
+	clear: both;
 }
 
 h2, .h2 {
@@ -174,6 +183,12 @@ h5, .h5 {
 *********************/
 
 .header {
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 130px;
+	
 	#inner-header {}
 
 	#logo {
@@ -206,16 +221,21 @@ and more scalable.
 */
 
 .nav {
-	border-bottom: 0;
+	height: 130px;
+	border-bottom: solid 2px #efefef;
+	margin: 0;
 
 	li {
+		height: auto;
 
 		a {
 			display: block;
 			text-decoration: none;
-			padding: 10px 10px;
-			background-color: #eee;
-			border-bottom: 1px solid #ccc;
+			padding: 0;
+			line-height: 1;
+			font-size: 18px;
+			color: #535353;
+			text-align: center;
 
 			/*
 			remember this is for mobile ONLY, so there's no need
@@ -224,7 +244,37 @@ and more scalable.
 			keep this file as small as possible!
 			*/
 			&:hover, &:focus {
+			
+				span.page-title {
+					background-color: #535353;
+					color: #FFF;
+				}
 
+			}
+			
+			img {
+				width: 32px;
+				margin: 0 auto 8px;
+				float: none;
+				display: block;
+				text-align: center;
+			}
+			
+			span.page-title {
+				width: 100%;
+				clear: both;
+				text-align: center;
+				float: none;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				display: block;
+				padding: 3px 8px 3px;
+				line-height: 1.5;
+				-webkit-transition: ease-in 160ms;
+			    -moz-transition: ease-in 160ms;
+			    -o-transition: ease-in 160ms;
+			    transition: ease-in 160ms;
 			}
 		}
 
@@ -269,7 +319,12 @@ and more scalable.
 	li.current_page_item,
 	li.current_page_ancestor {
 
-		a {}
+		a {
+			span.page-title {
+				background-color: #535353;
+				color: #FFF;
+			}
+		}
 
 	}  /* end current highlighters */
 
@@ -279,16 +334,24 @@ and more scalable.
 /*********************
 08. POSTS & CONTENT STYLES
 *********************/
+#container {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+}
 
 #content {
-	margin-top: 2.2em;
+	margin-top: 130px;
+	padding-top: 30px;
 
 	#inner-content {}
 }
 
 		.hentry {
 
-			header {}
+			header {
+				height: auto;
+			}
 
 			footer {}
 
@@ -823,13 +886,25 @@ and more scalable.
 
 .sidebar {}
 
-	.widgettitle {}
+	.widgettitle {
+		display: none;
+	}
 
 	.widget {
+	
+		position: fixed;
+		bottom: 0;
 
 		ul {
 
 			li {
+				
+				font-size:14px;
+				margin: 0;
+				line-height: 1.3;
+				color: @bones-orange;
+				margin: 4px 0;
+				padding-left: 25px;
 
 				&:first-child {}
 
@@ -840,6 +915,22 @@ and more scalable.
 				/* deep nesting */
 				ul {}
 
+			}
+			
+			li.twitterLink {
+				background: url('../images/twitter.png') no-repeat left center;
+			}
+			
+			li.mail {
+				background: url('../images/mail.png') no-repeat left center;
+			}
+			
+			li.tel {
+				background: url('../images/tel.png') no-repeat left center;
+			}
+			
+			li.fax {
+				background: url('../images/fax.png') no-repeat left center;
 			}
 
 		}
@@ -888,4 +979,149 @@ and more scalable.
 
 
 	.copyright {}
+	
+	
+	
+	
+	
+/*********************
+13. BREAKING NEWS STYLES
+*********************/
+
+h2.news {
+	margin: 0;
+	color: #535353;
+	text-transform: none;
+	font-size: 19px;
+	line-height: 1;
+	display: block;
+	background: #fff;
+	border: 1px solid #F78F1E;
+	overflow: hidden;
+	height: 23px;
+	padding: 2px 0;
+}
+
+h2.news span{
+	background: #F78F1E url('../images/news-arrow.png') right -1px no-repeat;
+	color: #fff;
+	text-transform: uppercase;
+	height: 23px;
+	padding: 0px 20px 0px 5px;
+	margin-right: 10px;
+}
+
+.newsButton h2:hover{
+	text-decoration: underline;
+	color: #F78F1E;
+}
+
+.newsButton h2 span:hover{
+	text-decoration: none;
+}
+
+// News Panel
+.flash{
+	position: relative;
+	z-index: 90;
+	height: 400px;
+}
+
+.flash h1{
+	margin: 20px 0 15px 0;
+	width: 400px;
+}
+
+.flash h2{
+	margin-top: -3px;
+}
+
+.flash img {
+	margin-top: 20px;
+}
+
+.flash ul{
+	margin: 0;
+	padding: 0;
+}
+
+.flash ul li{
+	margin: 10px 0;
+	list-style: none;
+	font-size: 18px;
+}
+
+.flash span{
+	color: #010101;
+}
+
+// Close Button
+
+.flash .close {
+	position: absolute;
+	right: 0;
+	top: 25px;
+	filter:alpha(opacity=80);
+	-moz-opacity:0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+	-webkit-transition: ease-in 200ms;
+    -moz-transition: ease-in 200ms;
+    -o-transition: ease-in 200ms;
+    transition: ease-in 200ms;
+    width: 57px;
+    height: 57px;
+    background: url('../images/close.png');
+    text-indent: -9999px;
+    cursor: pointer;
+}
+
+.flash .close:hover{
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1; 
+}
+
+
+
+
+
+
+
+/* LATEST */
+.grid .item{
+	width: 181px;
+	height: 181px;
+	margin: 0 18px 18px 0;
+	float: left;
+	overflow:hidden;
+	position:relative;
+	cursor:default;
+}
+
+.item .caption {
+	width: 145px;
+	height: 145px;
+	padding: 18px;
+	position: absolute;
+	left: 0;
+	color: #fff;
+	display: none;
+	line-height: 1.1;
+}
+
+.item .caption p{
+	font-size: 15px;
+	font-weight: 400;
+	color: #fff;
+}
+
+.grid img {
+	/*-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;*/
+	border:0;
+	position:absolute;
+}
 

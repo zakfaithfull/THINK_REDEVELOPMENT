@@ -106,3 +106,16 @@ jQuery(document).ready(function($) {
 	w.addEventListener( "orientationchange", restoreZoom, false );
 	w.addEventListener( "devicemotion", checkTilt, false );
 })( this );
+
+
+
+jQuery(document).ready(function (){
+	  	jQuery('.flash').hide();
+		jQuery('.news').click(function(){
+			jQuery('.flash').slideToggle();
+		});
+	
+		jQuery('.flash .close').click(function(){
+			jQuery('.flash').slideToggle();
+		});
+});

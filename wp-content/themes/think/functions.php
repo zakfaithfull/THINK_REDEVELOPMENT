@@ -162,4 +162,318 @@ function bones_wpsearch($form) {
 } // don't remove this bracket!
 
 
+
+
+
+
+add_filter('show_admin_bar', '__return_false'); //Remove Admin Bar
+
+
+
+
+
+
+// Custom Nav Images - Images & Text
+function md_nmi_custom_content( $content, $item_id, $original_content ) {
+  $content = $content . '<span class="page-title">' . $original_content . '</span>';
+
+  return $content;
+}
+add_filter( 'nmi_menu_item_content', 'md_nmi_custom_content', 10, 3 ); //
+
+
+
+//add custom post_types	
+	
+add_action( 'init', 'create_my_post_types' );
+
+function create_my_post_types() {
+	
+	register_post_type( 'quote',
+		array(
+			'labels' => array(
+			'name' => __( 'Quotes' ),
+			'singular_name' => __( 'Quote' ),
+			'add_new' => __( 'Add New' ),
+			'add_new_item' => __( 'Add New Quote' ),
+			'edit' => __( 'Edit' ),
+			'edit_item' => __( 'Edit Quote' ),
+			'new_item' => __( 'New Quote' ),
+			'view' => __( 'View Quote' ),
+			'view_item' => __( 'View Quote' ),
+			'search_items' => __( 'Search Quote' ),
+			'not_found' => __( 'No Quotes found' ),
+			'not_found_in_trash' => __( 'No Quotes found in Trash' ),
+			'parent' => __( 'Parent Quote' ),
+		),
+			'public' => true,
+			'show_ui' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => true,
+			'hierarchical' => true,
+			'query_var' => true,
+			'supports' => array( 'title'),
+			'taxonomies' => array('category', 'post_tag') // this is IMPORTANT
+		)
+	);
+	
+	register_post_type( 'fact',
+		array(
+			'labels' => array(
+			'name' => __( 'Facts' ),
+			'singular_name' => __( 'Fact' ),
+			'add_new' => __( 'Add New' ),
+			'add_new_item' => __( 'Add New Fact' ),
+			'edit' => __( 'Edit' ),
+			'edit_item' => __( 'Edit Fact' ),
+			'new_item' => __( 'New Fact' ),
+			'view' => __( 'View Fact' ),
+			'view_item' => __( 'View Fact' ),
+			'search_items' => __( 'Search Fact' ),
+			'not_found' => __( 'No Facts found' ),
+			'not_found_in_trash' => __( 'No Facts found in Trash' ),
+			'parent' => __( 'Parent Fact' ),
+		),
+			'public' => true,
+			'show_ui' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => true,
+			'hierarchical' => true,
+			'query_var' => true,
+			'supports' => array( 'title'),
+			'taxonomies' => array('category', 'post_tag') // this is IMPORTANT
+		)
+	);
+	
+	register_post_type( 'latest',
+		array(
+			'labels' => array(
+			'name' => __( 'Latest' ),
+			'singular_name' => __( 'Latest' ),
+			'add_new' => __( 'Add New' ),
+			'add_new_item' => __( 'Add New Latest Item' ),
+			'edit' => __( 'Edit' ),
+			'edit_item' => __( 'Edit Latest Item' ),
+			'new_item' => __( 'New Latest Item' ),
+			'view' => __( 'View Latest Item' ),
+			'view_item' => __( 'View Latest Item' ),
+			'search_items' => __( 'Search Latest Items' ),
+			'not_found' => __( 'No Latest Items found' ),
+			'not_found_in_trash' => __( 'No Latest Items found in Trash' ),
+			'parent' => __( 'Parent Latest Item' ),
+		),
+			'public' => true,
+			'show_ui' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => true,
+			'hierarchical' => true,
+			'query_var' => true,
+			'supports' => array( 'title', 'thumbnail', 'editor', 'excerpt'),
+			'taxonomies' => array('category', 'post_tag') // this is IMPORTANT
+		)
+	);
+	
+	register_post_type( 'award',
+		array(
+			'labels' => array(
+			'name' => __( 'Awards' ),
+			'singular_name' => __( 'Award' ),
+			'add_new' => __( 'Add New' ),
+			'add_new_item' => __( 'Add New Award' ),
+			'edit' => __( 'Edit' ),
+			'edit_item' => __( 'Edit Award' ),
+			'new_item' => __( 'New Award' ),
+			'view' => __( 'View Award' ),
+			'view_item' => __( 'View Award' ),
+			'search_items' => __( 'Search Awards' ),
+			'not_found' => __( 'No Awards found' ),
+			'not_found_in_trash' => __( 'No Awards found in Trash' ),
+			'parent' => __( 'Parent Award' ),
+		),
+			'public' => true,
+			'show_ui' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => true,
+			'hierarchical' => true,
+			'query_var' => true,
+			'supports' => array( 'title', 'thumbnail'),
+			'taxonomies' => array('category', 'post_tag') // this is IMPORTANT
+		)
+	);
+	
+	register_post_type( 'latestDigital',
+		array(
+			'labels' => array(
+			'name' => __( 'Latest Digital Edition' ),
+			'singular_name' => __( 'Digital Edition' ),
+			'add_new' => __( 'Add New' ),
+			'add_new_item' => __( 'Add New Digital Edition' ),
+			'edit' => __( 'Edit' ),
+			'edit_item' => __( 'Edit Digital Edition' ),
+			'new_item' => __( 'New Digital Edition' ),
+			'view' => __( 'View Digital Edition' ),
+			'view_item' => __( 'View Digital Edition' ),
+			'search_items' => __( 'Search Digital Editions' ),
+			'not_found' => __( 'No Digital Editions found' ),
+			'not_found_in_trash' => __( 'No Digital Editions found in Trash' ),
+			'parent' => __( 'Parent Digital Edition' ),
+		),
+			'public' => true,
+			'show_ui' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => true,
+			'hierarchical' => true,
+			'query_var' => true,
+			'supports' => array( 'title', 'excerpt', 'thumbnail'),
+			'taxonomies' => array('category', 'post_tag') // this is IMPORTANT
+		)
+	);
+
+
+}
+	
+
+add_action("admin_init", "admin_init");
+ 
+function admin_init(){
+	add_meta_box("recipient", "Company or Magazine Name", "recipient", "award", "normal", "low");
+	add_meta_box("source", "Quote Source", "source", "quote", "normal", "low");
+	add_meta_box("issuu", "Issuu Link", "issuu", "latest", "normal", "low");
+	add_meta_box("youtube", "Youtube", "youtube", "latest", "normal", "low");
+	add_meta_box("pagelink", "Page Link", "pagelink", "latest", "normal", "low");
+	add_meta_box("issuuLink", "Digital Edition Link", "issuuLink", "latestDigital", "normal", "low");
+}
+
+function recipient() {
+  global $post;
+  $custom = get_post_custom($post->ID);
+  $recipient = $custom["recipient"][0];
+  ?>
+  <Input type="text" name="recipient" style="width:600px;" value="<?php echo $recipient; ?>" />
+  <?php
+}
+ 
+function source() {
+  global $post;
+  $custom = get_post_custom($post->ID);
+  $source = $custom["source"][0];
+  ?>
+  <Input type="text" name="source" style="width:600px;" value="<?php echo $source; ?>" />
+  <?php
+}
+
+function issuu() {
+  global $post;
+  $custom = get_post_custom($post->ID);
+  $issuu = $custom["issuu"][0];
+  ?>
+  <Input type="text" name="issuu" style="width:600px;" value="<?php echo $issuu; ?>" />
+  <?php
+}
+
+function youtube() {
+  global $post;
+  $custom = get_post_custom($post->ID);
+  $youtube = $custom["youtube"][0];
+  ?>
+  <Input type="text" name="youtube" style="width:600px;" value="<?php echo $youtube; ?>" />
+  <?php
+}
+
+function pagelink() {
+  global $post;
+  $custom = get_post_custom($post->ID);
+  $pagelink = $custom["pagelink"][0];
+  ?>
+  <Input type="text" name="pagelink" style="width:600px;" value="<?php echo $pagelink; ?>" />
+  <?php
+}
+
+function issuuLink() {
+  global $post;
+  $custom = get_post_custom($post->ID);
+  $issuuLink = $custom["issuuLink"][0];
+  ?>
+  <Input type="text" name="issuuLink" style="width:600px;" value="<?php echo $issuuLink; ?>" />
+  <?php
+}
+
+add_action('save_post', 'save_details');
+
+
+function save_details(){
+  global $post;
+  update_post_meta($post->ID, "recipient", $_POST["recipient"]);
+  update_post_meta($post->ID, "source", $_POST["source"]);
+  update_post_meta($post->ID, "issuu", $_POST["issuu"]);
+  update_post_meta($post->ID, "youtube", $_POST["youtube"]);
+  update_post_meta($post->ID, "pagelink", $_POST["pagelink"]);
+  update_post_meta($post->ID, "issuuLink", $_POST["issuuLink"]);
+
+}
+
+
+
+
+
+function get_latest() {
+
+	ob_start();
+
+	query_posts('post_type=latest&posts_per_page=5');
+	
+	while ( have_posts() ) : the_post();
+	
+		global $post;
+	
+		setup_postdata($post);
+	
+		$issuu = get_post_meta($post->ID, 'issuu', true);
+		$youtube = get_post_meta($post->ID, 'youtube', true);
+		$pagelink = get_post_meta($post->ID, 'pagelink', true);
+		
+		echo '<div class="item">';
+			
+			the_post_thumbnail( 'gridThumb' );
+			
+			echo '<div class="caption">';
+			
+			echo '<h2>';
+					the_title(); 
+			echo '</h2>';
+				
+			the_excerpt();
+				
+			if (isset($issuu) && ($issuu != '')){
+				
+				echo '<a class="buttonWrap" rel="shadowbox;width=960;height=648;"  title="'; echo the_title(); echo '" href="'; echo $issuu; echo '" frameborder="0">View magazine</a>';
+			}
+			
+			if (isset($youtube) && ($youtube != '')){
+				
+				echo '<a class="ir play" rel="shadowbox;width=632;height=353;"  title="'; echo the_title(); echo '" href="'; echo $youtube; echo '" frameborder="0">View magazine</a>';
+			}
+			
+			if (isset($pagelink) && ($pagelink != '')){
+				
+				echo '<a class="buttonWrap"  title="'; echo the_title(); echo '" href="'; echo $pagelink; echo '">View magazine</a>';
+			}
+			
+			echo '</div>';
+		echo '</div>';
+			
+	endwhile;
+
+	// Reset Query
+	wp_reset_query();
+	
+	return ob_get_clean();
+
+}
+
+add_shortcode('get_latest', 'get_latest');
+
+
+
+
 ?>

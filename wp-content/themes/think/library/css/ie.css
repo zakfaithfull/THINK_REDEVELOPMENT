@@ -463,8 +463,6 @@ HEADER STYLES
 NAVIGATION STYLES
 *********************/
 .nav {
-  background: #eee;
-  border: 0;
   /* end .menu ul li */
 
   /* highlight current page */
@@ -473,8 +471,11 @@ NAVIGATION STYLES
 
 }
 .nav li {
-  float: left;
+  display: inline-block;
   position: relative;
+  height: 130px;
+  margin: 0 9px;
+  padding-top: 20px;
   /*
 		plan your menus and drop-downs wisely.
 		*/
@@ -483,16 +484,13 @@ NAVIGATION STYLES
 
 }
 .nav li a {
+  display: inline-block;
   border-bottom: 0;
   /*
 			you can use hover styles here even though this size
 			has the possibility of being a mobile device.
 			*/
 
-}
-.nav li a:hover,
-.nav li a:focus {
-  background-color: #dedede;
 }
 .nav li ul.sub-menu,
 .nav li ul.children {
@@ -534,25 +532,9 @@ NAVIGATION STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
-.sidebar {
-  margin-top: 2.2em;
-}
-.widgettitle {
-  border-bottom: 2px solid #444;
-  margin-bottom: 0.75em;
-}
-.widget {
-  padding: 0 10px;
-  margin: 2.2em 0;
-}
 .widget ul li {
-  margin-bottom: 0.75em;
   /* deep nesting */
 
-}
-.widget ul li ul {
-  margin-top: 0.75em;
-  padding-left: 1em;
 }
 /* links widget */
 /* meta widget */

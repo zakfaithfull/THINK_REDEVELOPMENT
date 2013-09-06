@@ -17,6 +17,10 @@
 		<meta name="HandheldFriendly" content="True">
 		<meta name="MobileOptimized" content="320">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<!-- Typekit Fonts -->
+		<script type="text/javascript" src="//use.typekit.net/qdu6zfz.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 		<!-- icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) -->
 		<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/library/images/apple-icon-touch.png">
@@ -48,13 +52,13 @@
 				<div id="inner-header" class="wrap clearfix">
 
 					<!-- to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> -->
-					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><img src="<?php echo get_template_directory_uri(); ?>/library/images/logo.png"</a></p>
+					<p id="logo" class="twocol first"><a href="<?php echo home_url(); ?>" rel="nofollow"><img src="<?php echo get_template_directory_uri(); ?>/library/images/logo.png"</a></p>
 
 					<!-- if you'd like to use the site description you can un-comment it below -->
 					<?php // bloginfo('description'); ?>
 
 
-					<nav role="navigation">
+					<nav role="navigation" class="tencol last">
 						<?php bones_main_nav(); ?>
 					</nav>
 
