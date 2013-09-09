@@ -415,14 +415,16 @@ function save_details(){
 
 
 
-
+// GET LATEST [get_latest]
 function get_latest() {
 
 	ob_start();
 
-	query_posts('post_type=latest&posts_per_page=5');
+	query_posts('post_type=latest&posts_per_page=8');
 	
-	while ( have_posts() ) : the_post();
+	echo '<div class="grid clearfix">';
+	
+		$i = 0; while ( have_posts() ) : the_post(); $i++;
 	
 		global $post;
 	
@@ -432,7 +434,18 @@ function get_latest() {
 		$youtube = get_post_meta($post->ID, 'youtube', true);
 		$pagelink = get_post_meta($post->ID, 'pagelink', true);
 		
-		echo '<div class="item">';
+		if( $i == 4) {
+			$style = 'last';
+			$i = 0;
+		}
+		else $style='';
+		
+		$styles = array(
+		    $style,
+		    'item'
+		  );
+		
+		echo '<div '; post_class($styles); echo '>';
 			
 			the_post_thumbnail( 'gridThumb' );
 			
@@ -463,6 +476,8 @@ function get_latest() {
 		echo '</div>';
 			
 	endwhile;
+	
+	echo '</div>';
 
 	// Reset Query
 	wp_reset_query();
@@ -474,6 +489,114 @@ function get_latest() {
 add_shortcode('get_latest', 'get_latest');
 
 
+
+// GET QUOTES [get_quotes]
+function get_quotes() {
+
+	ob_start();
+
+	query_posts('post_type=quote&posts_per_page=8&orderby=rand');
+
+	echo '<div class="flexslider-container quotes">';
+		echo '<div class="flexslider">';
+			echo '<ul class="slides">';
+				
+			while ( have_posts() ) : the_post();
+	
+				global $post;
+	
+				setup_postdata($post); 
+					
+				$source = get_post_meta($post->ID, 'source', true);	
+					
+				echo '<li><blockquote>'.$post->post_title.'<cite>'.$source.'</cite></blockquote></li>';
+				
+			endwhile;
+										
+			echo '</ul>';
+		echo '</div>';
+	echo '</div>';
+	
+	// Reset Query
+	wp_reset_query();
+	
+	return ob_get_clean();
+
+}
+
+add_shortcode('get_quotes', 'get_quotes');
+
+
+
+
+
+// GET DIGITAL EDITIONS [get_digital_editions]
+function get_digital_editions() {
+
+	ob_start();
+
+	query_posts('post_type=latestDigital&posts_per_page=9');
+				
+			while ( have_posts() ) : the_post();
+	
+				global $post;
+	
+				setup_postdata($post); 
+					
+				$issuuLink = get_post_meta($post->ID, 'issuuLink', true); 	
+					
+				echo '<a class="book" rel="shadowbox;width=960;height=648;" title="View '; echo the_title(); echo '" href="'; echo $issuuLink; echo '" frameborder="0">'; the_post_thumbnail( bookThumb ); echo'</a>';
+				
+			endwhile;
+
+	// Reset Query
+	wp_reset_query();
+	
+	return ob_get_clean();
+
+}
+
+add_shortcode('get_digital_editions', 'get_digital_editions');
+
+
+
+
+
+// GET AWARDS [get_awards]
+function get_awards() {
+
+	ob_start();
+
+	query_posts('post_type=award&posts_per_page=6');
+				
+			while ( have_posts() ) : the_post();
+	
+				global $post;
+	
+				setup_postdata($post); 
+					
+				$recipient = get_post_meta($post->ID, 'recipient', true); 	
+					
+				echo'<div class="awardContainer sixcol first clearfix">';
+					echo'<div class="sixcol first">';
+						the_post_thumbnail( 'gridThumb' );
+					echo'</div>';
+					echo'<div class="sixcol last">';
+						echo'<h2>'; the_title(); echo'</h2>';
+						echo'<p>';echo $recipient; echo'</p>';
+					echo'</div>';
+				echo'</div>';
+				
+			endwhile;
+
+	// Reset Query
+	wp_reset_query();
+	
+	return ob_get_clean();
+
+}
+
+add_shortcode('get_awards', 'get_awards');
 
 
 ?>
